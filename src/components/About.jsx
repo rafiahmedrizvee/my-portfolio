@@ -7,73 +7,116 @@ gsap.registerPlugin(ScrollTrigger);
 export default function About() {
   const sectionRef = useRef(null);
   const skillRefs = useRef([]);
-  const cardRefs = useRef([]);
+  const educationRefs = useRef([]);
+  const bubblesRef = useRef(null);
 
   useEffect(() => {
-    // Animate section title
-    gsap.from(sectionRef.current, {
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-      },
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-    });
-
-    // Animate skill bars
-    skillRefs.current.forEach((skill, i) => {
-      gsap.from(skill, {
+    const ctx = gsap.context(() => {
+      // Section title + intro
+      gsap.from(".about-animate", {
         scrollTrigger: {
-          trigger: skill,
+          trigger: sectionRef.current,
           start: "top 80%",
         },
-        width: 0,
-        duration: 1.2,
-        delay: i * 0.2,
-        ease: "power2.out",
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out",
       });
-    });
 
-    // Animate cards
-    cardRefs.current.forEach((card, i) => {
-      gsap.from(card, {
+      // Skill bars animation
+      skillRefs.current.forEach((el) => {
+        const value = el.dataset.level;
+
+        gsap.fromTo(
+          el,
+          { width: "0%" },
+          {
+            width: value,
+            duration: 1.5,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+            },
+          }
+        );
+      });
+
+      // Education cards
+      gsap.from(educationRefs.current, {
         scrollTrigger: {
-          trigger: card,
-          start: "top 85%",
+          trigger: ".education-section",
+          start: "top 80%",
         },
         opacity: 0,
         y: 30,
         duration: 0.8,
-        delay: i * 0.2,
-        ease: "power2.out",
+        stagger: 0.2,
+        ease: "power3.out",
       });
-    });
+
+      // Bubbles animation
+      gsap.utils.toArray(".bubble").forEach((bubble) => {
+        gsap.fromTo(
+          bubble,
+          { y: "100%", opacity: 0 },
+          {
+            y: "-20%",
+            opacity: 1,
+            duration: gsap.utils.random(6, 12),
+            repeat: -1,
+            ease: "sine.inOut",
+            delay: gsap.utils.random(0, 3),
+          }
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert(); // cleanup
   }, []);
+
+  // Generate bubbles
+  const bubbleCount = 15;
+  const bubbles = Array.from({ length: bubbleCount }).map((_, i) => (
+    <span
+      key={i}
+      className="bubble absolute w-4 h-4 bg-[var(--accent)] rounded-full opacity-30"
+      style={{
+        left: `${Math.random() * 95}%`,
+        bottom: `${Math.random() * 10}%`,
+      }}
+    />
+  ));
 
   return (
     <section
       id="about"
-      className="section max-w-5xl mx-auto py-16 px-4"
       ref={sectionRef}
+      className="relative max-w-5xl mx-auto py-20 px-4 overflow-hidden"
     >
-      <h2 className="section-title text-3xl font-bold text-center mb-8">
+      {/* Bubbles */}
+      <div ref={bubblesRef} className="absolute inset-0 pointer-events-none">
+        {bubbles}
+      </div>
+
+      <h2 className="about-animate text-3xl font-bold text-center mb-6">
         About Me
       </h2>
 
-      {/* Intro */}
-      <p className="text-lg leading-relaxed text-center max-w-3xl mx-auto mb-12">
+      <p className="about-animate text-lg text-center max-w-3xl mx-auto mb-14">
         I am a Full-Stack Web Developer with strong experience in React, Tailwind
-        CSS, Node.js, MongoDB, and Firebase. I specialize in building
-        responsive UIs, component-driven architecture, and high-performance web
-        applications. My goal is to craft seamless, interactive experiences for
-        users.
+        CSS, Node.js, MongoDB, and Firebase. I focus on building smooth,
+        scalable, and performance-driven web applications.
       </p>
 
       {/* Skills */}
-      <div className="mb-12">
-        <h3 className="text-2xl font-semibold mb-6 text-center">Skills & Technologies</h3>
+      <div className="mb-16">
+        <h3 className="about-animate text-2xl font-semibold text-center mb-8">
+          Skills & Technologies
+        </h3>
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { name: "React.js", level: "90%" },
@@ -87,83 +130,103 @@ export default function About() {
           ].map((skill, i) => (
             <div key={i} className="bg-[var(--card)] p-4 rounded-xl shadow-md">
               <h4 className="font-semibold mb-2">{skill.name}</h4>
+
               <div className="bg-gray-200 h-2 rounded-full overflow-hidden">
                 <div
                   ref={(el) => (skillRefs.current[i] = el)}
+                  data-level={skill.level}
                   className="h-2 bg-blue-500 rounded-full"
-                  style={{ width: 0 }}
-                ></div>
+                  style={{ width: "0%" }}
+                />
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Experience / Achievements */}
-      <div className="mb-12">
-        <h3 className="text-2xl font-semibold mb-6 text-center">Experience & Achievements</h3>
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            {
-              title: "Frontend Developer",
-              company: "Tech Company",
-              desc: "Developed responsive UI components and interactive web apps using React and Tailwind CSS.",
-            },
-            {
-              title: "Backend Developer",
-              company: "Web Solutions",
-              desc: "Built REST APIs and integrated MongoDB & Firebase for dynamic web applications.",
-            },
-            {
-              title: "Project: Portfolio Website",
-              company: "Personal Project",
-              desc: "Designed and developed a full-stack portfolio with dark/light mode, animations, and optimized performance.",
-            },
-          ].map((card, i) => (
-            <div
-              key={i}
-              ref={(el) => (cardRefs.current[i] = el)}
-              className="bg-[var(--card)] p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <h4 className="font-bold text-lg mb-1">{card.title}</h4>
-              <p className="text-sm mb-2 text-gray-500">{card.company}</p>
-              <p className="text-sm">{card.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Education */}
+      <div className="education-section mt-20">
+        <h3 className="text-2xl font-semibold text-center mb-12">
+          Education & Certifications
+        </h3>
 
-      {/* Education / Certifications */}
-      <div>
-        <h3 className="text-2xl font-semibold mb-6 text-center">Education & Certifications</h3>
-        <div className="space-y-6 max-w-3xl mx-auto">
-          {[
-            {
-              title: "B.Sc. in Computer Science",
-              institution: "University of Dhaka",
-              year: "2020",
-            },
-            {
-              title: "Full-Stack Web Development Certification",
-              institution: "freeCodeCamp",
-              year: "2022",
-            },
-            {
-              title: "React & Modern JavaScript",
-              institution: "Udemy",
-              year: "2023",
-            },
-          ].map((edu, i) => (
-            <div
-              key={i}
-              ref={(el) => (cardRefs.current[i + 3] = el)}
-              className="bg-[var(--card)] p-4 rounded-xl shadow-md"
-            >
-              <h4 className="font-semibold">{edu.title}</h4>
-              <p className="text-sm text-gray-500">{edu.institution}</p>
-              <p className="text-sm text-gray-400">{edu.year}</p>
-            </div>
-          ))}
+        <div className="relative max-w-3xl mx-auto">
+          {/* Vertical line */}
+          <div className="absolute left-4 top-0 h-full w-px bg-[var(--border)]" />
+
+          <div className="space-y-10">
+            {[
+              {
+                title: "B.Sc. in Computer Science",
+                institution: "University of Dhaka",
+                year: "2020",
+              },
+              {
+                title: "Full-Stack Web Development",
+                institution: "freeCodeCamp",
+                year: "2022",
+              },
+              {
+                title: "React & Modern JavaScript",
+                institution: "Udemy",
+                year: "2023",
+              },
+            ].map((edu, i) => (
+              <div
+                key={i}
+                ref={(el) => (educationRefs.current[i] = el)}
+                className="relative pl-14 group"
+              >
+                {/* Dot */}
+                <span
+                  className="
+                    absolute left-[6px] top-3
+                    w-3 h-3
+                    rounded-full
+                    bg-[var(--accent)]
+                    ring-4 ring-[var(--card)]
+                    transition-transform
+                    duration-300
+                    group-hover:scale-125
+                  "
+                />
+
+                {/* Card */}
+                <div
+                  className="
+                    bg-[var(--card)]
+                    backdrop-blur
+                    border border-[var(--border)]
+                    rounded-2xl
+                    p-6
+                    shadow-md
+                    transition-all
+                    duration-300
+                    group-hover:-translate-y-1
+                    group-hover:shadow-xl
+                    group-hover:border-[var(--accent)]
+                  "
+                >
+                  <h4 className="font-semibold text-lg">{edu.title}</h4>
+                  <p className="text-sm text-gray-500 mt-1">{edu.institution}</p>
+                  <span
+                    className="
+                      inline-block
+                      mt-3
+                      text-xs
+                      font-medium
+                      text-[var(--accent)]
+                      bg-[color:var(--accent)/10]
+                      px-3 py-1
+                      rounded-full
+                    "
+                  >
+                    {edu.year}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
