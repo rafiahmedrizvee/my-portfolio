@@ -12,17 +12,17 @@ export default function Contact() {
 
     emailjs
       .sendForm(
-        "service_qf8aq9r",   // replace
-        "YOUR_TEMPLATE_ID",  // replace
+        "service_qf8aq9r",
+        "template_qf8aq9r", // ⚠️ use TEMPLATE ID here
         e.target,
-        "YOUR_PUBLIC_KEY"    // replace
+        "PUBLIC_KEY"
       )
       .then(() => {
-        setStatus("✅ Message sent successfully! I’ll get back to you soon.");
+        setStatus("✅ Message sent successfully! I’ll contact you soon.");
         e.target.reset();
       })
       .catch(() => {
-        setStatus("❌ Failed to send message. Please try again later.");
+        setStatus("❌ Something went wrong. Please try again.");
       })
       .finally(() => setLoading(false));
   };
@@ -30,75 +30,99 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="section max-w-2xl mx-auto px-4"
+      className="py-20 px-4 sm:px-6 lg:px-8"
     >
-      <h2 className="section-title text-center">Get In Touch</h2>
-
-      <p className="text-center text-gray-500 dark:text-gray-400 mt-2">
-        Have a project or question? Send me a message — I’ll reply to your email.
-      </p>
-
-      <form
-        onSubmit={handleSubmit}
-        className="mt-8 bg-[var(--card)] p-6 rounded-2xl shadow-lg flex flex-col gap-5"
-      >
-        <div>
-          <label className="text-sm font-medium">Full Name</label>
-          <input
-            type="text"
-            name="user_name"
-            placeholder="Your name"
-            required
-            className="w-full mt-1 p-3 rounded-lg border border-[var(--border)] bg-transparent focus:outline-none focus:ring-2 focus:ring-primary"
-          />
-        </div>
-
-        <div>
-          <label className="text-sm font-medium">Email Address</label>
-          <input
-            type="email"
-            name="user_email"
-            placeholder="you@example.com"
-            required
-            className="w-full mt-1 p-3 rounded-lg border border-[var(--border)] bg-transparent focus:outline-none focus:ring-2 focus:ring-primary"
-          />
-        </div>
-
-        <div>
-          <label className="text-sm font-medium">Message</label>
-          <textarea
-            name="message"
-            rows="5"
-            placeholder="Write your message here..."
-            required
-            className="w-full mt-1 p-3 rounded-lg border border-[var(--border)] bg-transparent focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="btn-primary flex items-center justify-center gap-2 disabled:opacity-60"
-        >
-          {loading ? "Sending..." : "Send Message"}
-        </button>
-
-        {status && (
-          <p className="text-sm text-center mt-2">
-            {status}
+      <div className="max-w-5xl mx-auto">
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+            Contact Me
+          </h2>
+          <p className="mt-4 text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
+            Have an idea or project in mind? Let’s talk.  
+            I usually reply within 24 hours.
           </p>
-        )}
+        </div>
 
-        <p className="text-xs text-center text-gray-400 mt-3">
-          Or email me directly at{" "}
-          <a
-            href="mailto:rizvirafi7@gmail.com"
-            className="text-primary underline"
+        {/* Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {/* Left Info */}
+          <div className="flex flex-col justify-center space-y-6">
+            <div>
+              <h3 className="text-xl font-semibold mb-2">
+                Let’s build something great
+              </h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                Feel free to reach out for collaborations, freelance work,
+                or just a friendly hello 👋
+              </p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-400">Email</p>
+              <a
+                href="mailto:rizvirafi7@gmail.com"
+                className="text-lg font-medium text-primary hover:underline"
+              >
+                rizvirafi7@gmail.com
+              </a>
+            </div>
+          </div>
+
+          {/* Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 shadow-xl space-y-5"
           >
-            rizvirafi7@gmail.com
-          </a>
-        </p>
-      </form>
+            <div>
+              <label className="text-sm font-medium">Your Name</label>
+              <input
+                type="text"
+                name="user_name"
+                placeholder="John Doe"
+                required
+                className="w-full mt-2 p-3 rounded-lg border border-[var(--border)] bg-transparent focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+
+            <div>
+              <label className="text-sm font-medium">Your Email</label>
+              <input
+                type="email"
+                name="user_email"
+                placeholder="john@example.com"
+                required
+                className="w-full mt-2 p-3 rounded-lg border border-[var(--border)] bg-transparent focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+
+            <div>
+              <label className="text-sm font-medium">Message</label>
+              <textarea
+                name="message"
+                rows="4"
+                placeholder="Tell me about your project..."
+                required
+                className="w-full mt-2 p-3 rounded-lg border border-[var(--border)] bg-transparent focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full btn-primary py-3 text-base rounded-xl disabled:opacity-60"
+            >
+              {loading ? "Sending Message..." : "Send Message"}
+            </button>
+
+            {status && (
+              <p className="text-sm text-center mt-3">
+                {status}
+              </p>
+            )}
+          </form>
+        </div>
+      </div>
     </section>
   );
 }
