@@ -76,13 +76,13 @@ export default function Footer() {
         {/* Contact / Social */}
         <div>
           <h4 className="text-white font-bold mb-3 text-lg">Contact & Social</h4>
-          <p className="text-gray-400 text-sm mb-2">Email: <a href="mailto:rafi@example.com" className="hover:text-indigo-500">rafi@example.com</a></p>
-          <p className="text-gray-400 text-sm mb-3">Phone: <a href="tel:+880123456789" className="hover:text-indigo-500">+880 1234 567 89</a></p>
+          <p className="text-gray-400 text-sm mb-2">Email: <a href="mailto:rafi@example.com" className="hover:text-indigo-500">rizvirafi7@gmail.com</a></p>
+          <p className="text-gray-400 text-sm mb-3">Phone: <a href="tel:+880123456789" className="hover:text-indigo-500">+880 1865192440</a></p>
           <div className="flex justify-center md:justify-start gap-4 mt-2">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-indigo-500 transition-colors">Facebook</a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-indigo-500 transition-colors">LinkedIn</a>
-            <a href="mailto:rafi@example.com" className="hover:text-indigo-500 transition-colors">Gmail</a>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-indigo-500 transition-colors">GitHub</a>
+            <a href="https://www.facebook.com/rizvi.roxas" target="_blank" rel="noreferrer" className="hover:text-indigo-500 transition-colors">Facebook</a>
+            <a href="www.linkedin.com/in/mazharul-alam-rafi" target="_blank" rel="noreferrer" className="hover:text-indigo-500 transition-colors">LinkedIn</a>
+            <a href="mailto:mazharulalamrafi@gmail.com" className="hover:text-indigo-500 transition-colors">Gmail</a>
+            <a href="https://github.com/rafiahmedrizvee" target="_blank" rel="noreferrer" className="hover:text-indigo-500 transition-colors">GitHub</a>
           </div>
         </div>
       </div>

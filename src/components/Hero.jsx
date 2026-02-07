@@ -140,11 +140,11 @@ export default function Hero() {
           {/* Quick Stats / Highlights */}
           <div className="hero-animate mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="bg-[var(--card)] p-4 rounded-xl shadow-md text-center hover:shadow-xl transition-all">
-              <h3 className="text-2xl font-bold text-[var(--accent)]">12+</h3>
+              <h3 className="text-2xl font-bold text-[var(--accent)]">20+</h3>
               <p className="text-sm text-gray-500">Projects</p>
             </div>
             <div className="bg-[var(--card)] p-4 rounded-xl shadow-md text-center hover:shadow-xl transition-all">
-              <h3 className="text-2xl font-bold text-[var(--accent)]">3+</h3>
+              <h3 className="text-2xl font-bold text-[var(--accent)]">1+</h3>
               <p className="text-sm text-gray-500">Years Exp</p>
             </div>
             <div className="bg-[var(--card)] p-4 rounded-xl shadow-md text-center hover:shadow-xl transition-all">
@@ -152,7 +152,7 @@ export default function Hero() {
               <p className="text-sm text-gray-500">Skills</p>
             </div>
             <div className="bg-[var(--card)] p-4 rounded-xl shadow-md text-center hover:shadow-xl transition-all">
-              <h3 className="text-2xl font-bold text-[var(--accent)]">5+</h3>
+              <h3 className="text-2xl font-bold text-[var(--accent)]">2+</h3>
               <p className="text-sm text-gray-500">Certifications</p>
             </div>
           </div>

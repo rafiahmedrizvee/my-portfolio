@@ -158,18 +158,18 @@ export default function About() {
             {[
               {
                 title: "B.Sc. in Computer Science",
-                institution: "University of Dhaka",
-                year: "2020",
+                institution: "Daffodil Institute of IT",
+                year: "2025",
               },
               {
                 title: "Full-Stack Web Development",
-                institution: "freeCodeCamp",
-                year: "2022",
+                institution: "Eshikhon",
+                year: "2025",
               },
               {
-                title: "React & Modern JavaScript",
-                institution: "Udemy",
-                year: "2023",
+                title: "Data Science & Machine Learning",
+                institution: "Ostad",
+                year: "2026",
               },
             ].map((edu, i) => (
               <div
