@@ -32,7 +32,7 @@ I am a passionate **React Frontend & MERN Stack Developer** with hands-on experi
 
 ## 📂 Portfolio
 Check out my projects and contributions here:  
-[**My Portfolio**](https://your-portfolio-link.com)  
+[**My Portfolio**](https://portfolio-rafiahmedrizvee.netlify.app/)  
 
 **Notable Projects:**
 1. **MERN Stack E-commerce Website** – Fully responsive with payment integration (Stripe, PayPal, Razorpay)  
@@ -42,14 +42,14 @@ Check out my projects and contributions here:
 ---
 
 ## 📈 GitHub Stats
-![Rafi's GitHub Stats](https://github-readme-stats.vercel.app/api?username=your-github-username&show_icons=true&theme=radical)
+![Rafi's GitHub Stats](https://github.com/rafiahmedrizvee)
 
 ---
 
 ## 🔗 Connect with Me
-- [LinkedIn](https://www.linkedin.com/in/rafiahmedrizvee/)  
-- [Portfolio](https://your-portfolio-link.com)  
-- [GitHub](https://github.com/your-github-username)  
+- [LinkedIn](www.linkedin.com/in/mazharul-alam-rafi)  
+- [Portfolio](https://portfolio-rafiahmedrizvee.netlify.app/)  
+- [GitHub](https://github.com/rafiahmedrizvee)  
 
 ---
 
