@@ -20,45 +20,57 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const sectionRef = useRef(null);
-  const mernRefs = useRef([]);
-  const aiRefs = useRef([]);
-  const softRefs = useRef([]);
-  const educationRefs = useRef([]);
+  const cardsRef = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".about-animate",
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-        }
-      );
-
-      [mernRefs.current, aiRefs.current, softRefs.current, educationRefs.current].forEach((arr) => {
-        gsap.from(arr, {
-          opacity: 0,
-          y: 30,
-          duration: 1,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 85%" },
-        });
+      gsap.defaults({
+        ease: "power3.out",
+        duration: 1,
       });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
+      });
+
+      tl.from(".about-heading", {
+        autoAlpha: 0,
+        yPercent: 30,
+      })
+        .from(
+          ".about-text",
+          {
+            autoAlpha: 0,
+            yPercent: 20,
+          },
+          "-=0.6"
+        )
+        .from(
+          cardsRef.current,
+          {
+            autoAlpha: 0,
+            yPercent: 15,
+            scale: 0.96,
+            stagger: 0.08,
+            clearProps: "all",
+          },
+          "-=0.4"
+        );
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const baseCardClass =
+    "group backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-white/10 will-change-transform";
+
   const mernSkills = [
     { name: "HTML5", icon: <FaJs className="text-orange-500 text-2xl" /> },
     { name: "CSS3", icon: <FaJs className="text-blue-500 text-2xl" /> },
-    { name: "Tailwind CSS", icon: <FaReact className="text-blue-400 text-2xl" /> },
+    { name: "Tailwind CSS", icon: <FaReact className="text-sky-400 text-2xl" /> },
     { name: "JavaScript", icon: <FaJs className="text-yellow-400 text-2xl" /> },
     { name: "ReactJS", icon: <FaReact className="text-cyan-400 text-2xl" /> },
     { name: "NodeJS", icon: <FaNodeJs className="text-green-400 text-2xl" /> },
@@ -76,17 +88,11 @@ export default function About() {
     { name: "TensorFlow", icon: <FaBrain className="text-red-400 text-2xl" /> },
     { name: "Keras", icon: <FaBrain className="text-pink-400 text-2xl" /> },
     { name: "PyTorch", icon: <FaBrain className="text-red-600 text-2xl" /> },
-    { name: "Jupyter Notebook", icon: <FaBrain className="text-orange-400 text-2xl" /> },
-    { name: "Google Colab", icon: <FaBrain className="text-blue-400 text-2xl" /> },
-    { name: "Git & GitHub", icon: <FaGitAlt className="text-gray-500 text-2xl" /> },
-    { name: "FastAPI", icon: <FaPython className="text-green-400 text-2xl" /> },
     { name: "Docker", icon: <FaDocker className="text-blue-600 text-2xl" /> },
     { name: "MLflow", icon: <FaBrain className="text-purple-300 text-2xl" /> },
     { name: "SpaCy", icon: <FaBrain className="text-purple-400 text-2xl" /> },
-    { name: "OpenAI", icon: <FaBrain className="text-purple-500 text-2xl" /> },
-    { name: "LangChain", icon: <FaBrain className="text-purple-600 text-2xl" /> },
-    { name: "Postman", icon: <FaBrain className="text-orange-500 text-2xl" /> },
-    { name: "Swagger (OpenAPI)", icon: <FaBrain className="text-blue-500 text-2xl" /> },
+    { name: "FastAPI", icon: <FaPython className="text-green-400 text-2xl" /> },
+    { name: "Git & GitHub", icon: <FaGitAlt className="text-gray-400 text-2xl" /> },
   ];
 
   const softSkills = [
@@ -104,22 +110,45 @@ export default function About() {
     { title: "AI Engineering Certification", institution: "Ostad / Coursera", year: "2026" },
   ];
 
+  let cardIndex = 0;
+
+  const renderCard = (content) => (
+    <div
+      ref={(el) => (cardsRef.current[cardIndex++] = el)}
+      className={`${baseCardClass} flex items-center gap-3`}
+    >
+      {content}
+    </div>
+  );
+
   return (
-    <section id="about" ref={sectionRef} className="relative max-w-6xl mx-auto py-24 px-4">
-      <h2 className="about-animate text-4xl font-bold text-center mb-6 bg-gradient-to-r from-[var(--accent)] to-purple-500 bg-clip-text text-transparent">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative max-w-6xl mx-auto py-24 px-4"
+    >
+      <h2 className="about-heading text-4xl font-bold text-center mb-6 bg-gradient-to-r from-[var(--accent)] to-purple-500 bg-clip-text text-transparent">
         About Me
       </h2>
 
-      <p className="about-animate text-lg text-center text-muted max-w-3xl mx-auto mb-16">
-        I am a passionate Full-Stack Web Developer and AI Engineer with strong technical and professional skills. I combine MERN Stack expertise with AI/ML knowledge to build scalable and intelligent solutions. Alongside my technical skills, I excel in communication, collaboration, and problem-solving, ensuring every project is delivered efficiently and effectively.
+      <p className="about-text text-lg text-center text-muted max-w-3xl mx-auto mb-16">
+        I am a passionate Full-Stack Web Developer and AI Engineer with strong
+        technical and professional skills. I combine MERN Stack expertise with
+        AI/ML knowledge to build scalable and intelligent solutions.
       </p>
 
-      {/* MERN Stack */}
+      {/* MERN */}
       <div className="mb-16">
-        <h3 className="about-animate text-2xl font-semibold text-center mb-8">MERN Stack Skills</h3>
+        <h3 className="text-2xl font-semibold text-center mb-8">
+          MERN Stack Skills
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {mernSkills.map((skill, i) => (
-            <div key={i} ref={(el) => (mernRefs.current[i] = el)} className="about-animate group backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center gap-3">
+            <div
+              key={i}
+              ref={(el) => (cardsRef.current[cardIndex++] = el)}
+              className={`${baseCardClass} flex items-center gap-3`}
+            >
               {skill.icon}
               <h4 className="font-medium">{skill.name}</h4>
             </div>
@@ -127,12 +156,18 @@ export default function About() {
         </div>
       </div>
 
-      {/* AI Engineering */}
+      {/* AI */}
       <div className="mb-16">
-        <h3 className="about-animate text-2xl font-semibold text-center mb-8">AI Engineering Skills</h3>
+        <h3 className="text-2xl font-semibold text-center mb-8">
+          AI Engineering Skills
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {aiSkills.map((skill, i) => (
-            <div key={i} ref={(el) => (aiRefs.current[i] = el)} className="about-animate group backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center gap-3">
+            <div
+              key={i}
+              ref={(el) => (cardsRef.current[cardIndex++] = el)}
+              className={`${baseCardClass} flex items-center gap-3`}
+            >
               {skill.icon}
               <h4 className="font-medium">{skill.name}</h4>
             </div>
@@ -140,12 +175,18 @@ export default function About() {
         </div>
       </div>
 
-      {/* Soft Skills */}
+      {/* Soft */}
       <div className="mb-16">
-        <h3 className="about-animate text-2xl font-semibold text-center mb-8">Soft Skills</h3>
+        <h3 className="text-2xl font-semibold text-center mb-8">
+          Soft Skills
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {softSkills.map((skill, i) => (
-            <div key={i} ref={(el) => (softRefs.current[i] = el)} className="about-animate group backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-5 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center gap-3">
+            <div
+              key={i}
+              ref={(el) => (cardsRef.current[cardIndex++] = el)}
+              className={`${baseCardClass} flex items-center gap-3`}
+            >
               {skill.icon}
               <h4 className="font-medium">{skill.name}</h4>
             </div>
@@ -154,14 +195,24 @@ export default function About() {
       </div>
 
       {/* Education */}
-      <div className="education-section">
-        <h3 className="about-animate text-2xl font-semibold text-center mb-12">Education & Certifications</h3>
+      <div>
+        <h3 className="text-2xl font-semibold text-center mb-12">
+          Education & Certifications
+        </h3>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {education.map((edu, i) => (
-            <div key={i} ref={(el) => (educationRefs.current[i] = el)} className="about-animate backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all">
+            <div
+              key={i}
+              ref={(el) => (cardsRef.current[cardIndex++] = el)}
+              className={`${baseCardClass}`}
+            >
               <h4 className="font-semibold text-lg">{edu.title}</h4>
-              <p className="text-sm text-muted mt-1">{edu.institution}</p>
-              <span className="inline-block mt-4 text-xs font-medium text-[var(--accent)] bg-[color:var(--accent)/10] px-3 py-1 rounded-full">{edu.year}</span>
+              <p className="text-sm text-muted mt-1">
+                {edu.institution}
+              </p>
+              <span className="inline-block mt-4 text-xs font-medium text-[var(--accent)] bg-[color:var(--accent)/10] px-3 py-1 rounded-full">
+                {edu.year}
+              </span>
             </div>
           ))}
         </div>
