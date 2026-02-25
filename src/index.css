@@ -71,6 +71,21 @@ body {
   border-radius: 0.75rem;
 }
 
+/* .spotlight {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(99,102,241,0.15), transparent 60%);
+  filter: blur(80px);
+  top: 20%;
+  left: 10%;
+  animation: floatSpotlight 12s infinite alternate ease-in-out;
+}
+
+@keyframes floatSpotlight {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(200px, 120px); }
+} */
 
 
 /* :root {
@@ -85,3 +100,20 @@ body {
   --muted: #94a3b8;
 }
  */
+@keyframes blink-gradient {
+  0%, 50%, 100% {opacity:1;}
+  25%, 75% {opacity:0;}
+}
+.animate-blink-gradient { animation: blink-gradient 1s infinite; }
+
+@keyframes bounce-glow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+.animate-bounce-glow { animation: bounce-glow 1s infinite; }
+
+@keyframes pulse-slow {
+  0%, 100% { opacity:0.15; }
+  50% { opacity:0.2; }
+}
+.animate-pulse-slow { animation: pulse-slow 6s infinite; }
