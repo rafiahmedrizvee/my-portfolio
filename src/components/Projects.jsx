@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import camper_van from "../assets/project/campervan.png"
 import resell from "../assets/project/resell.png"
 import digital from "../assets/project/digital.png"
 import embassy from "../assets/project/embassy.png"
@@ -11,48 +12,57 @@ import titan from "../assets/project/titan.png"
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
+
   {
-    title: "Titan Code Portfolio",
-    tech: "React, GSAP, Tailwind CSS",
-    desc: "High-performance animated portfolio website with smooth scrolling animations.",
-    image: titan,
-    live: "https://titan-code-website.netlify.app/",
+    title: "Camper-van Website",
+    tech: "HTML5, CSS, Tailwind CSS, React, Firebase, GSAP, Framer Motion",
+    desc: "Explore and book camper vans effortlessly with a fully responsive, animated, and user-friendly interface. Smooth transitions and dynamic content bring this React & Firebase project to life.",
+    image: camper_van,
+    live: "https://campervan2026.netlify.app/"
   },
   {
     title: "Resell Mobile Shop",
-    tech: "React, Tailwind, Firebase, Stripe",
-    desc: "Full-stack resale marketplace with authentication & payments.",
+    tech: "HTML5,Tailwind CSS,React,Node,Express,MongoDB Firebase,GSAP,Framer Motion",
+    desc: "A full-stack resale marketplace featuring secure authentication, seamless payment integration, and a polished shopping experience for buying and selling mobile devices.",
     image: resell,
-    live: "https://resellmobileshop.netlify.app/",
+    live: "https://resellmobileshop.netlify.app/"
   },
   {
     title: "ClothyFly E-Commerce",
-    tech: "React, Tailwind, Framer Motion",
-    desc: "Modern fashion e-commerce UI with smooth animations.",
+    tech: "HTML5, CSS, Tailwind CSS, React, Firebase, GSAP, Framer Motion",
+    desc: "A modern fashion e-commerce platform with smooth animations, intuitive UI, and engaging product browsing experience built for style-conscious users.",
     image: shop,
-    live: "https://clothyfly-shop.netlify.app/",
+    live: "https://clothyfly-shop.netlify.app/"
+  },
+  {
+    title: "Titan Code Portfolio",
+    tech: "HTML5, CSS, Tailwind CSS, React, Firebase, GSAP, Framer Motion",
+    desc: "An animated personal portfolio with smooth scrolling, interactive elements, and performance-focused design showcasing projects and skills in a dynamic way.",
+    image: titan,
+    live: "https://titan-code-website.netlify.app/"
   },
   {
     title: "Visa Embassy Website",
-    tech: "React, Tailwind CSS",
-    desc: "Informative and interactive embassy website with forms.",
+    tech: "HTML5, CSS, Tailwind CSS, React,Node.js,Express.js,MongoDB Firebase, GSAP, Framer Motion",
+    desc: "Informative and interactive embassy website with user-friendly forms, responsive design, and modern interface for a seamless visitor experience.",
     image: embassy,
-    live: "https://visa-embassy.netlify.app/",
+    live: "https://visa-embassy.netlify.app/"
   },
   {
     title: "Digital Solutions Agency",
-    tech: "React, Tailwind, Framer Motion",
-    desc: "Corporate agency website with portfolio showcase and animations.",
+    tech: "HTML5, CSS, Tailwind CSS, React, Firebase, GSAP, Framer Motion",
+    desc: "Corporate agency website with animated portfolio showcase, responsive layout, and smooth UI interactions to highlight services and projects professionally.",
     image: digital,
-    live: "https://digital-solutionsit.netlify.app/",
+    live: "https://digital-solutionsit.netlify.app/"
   },
   {
     title: "Shopsy",
-    tech: "React, Redux, Tailwind CSS",
-    desc: "Advanced e-commerce site with shopping cart and payment integration.",
-    image: shopsy ,
-    live: "https://shopsy-shop-25.netlify.app/",
-  },
+    tech: "HTML5, CSS, Tailwind CSS, React, Firebase, GSAP, Framer Motion",
+    desc: "Advanced e-commerce platform featuring shopping cart, Redux state management, and payment integration, offering a seamless online shopping experience.",
+    image: shopsy,
+    live: "https://shopsy-shop-25.netlify.app/"
+  }
+
 ];
 
 export default function Projects() {
@@ -150,7 +160,7 @@ export default function Projects() {
       </div>
 
       <h2 className="projects-title text-3xl font-bold text-center mb-12 relative z-10">
-        My Projects
+        Web Projects
       </h2>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto relative z-10">

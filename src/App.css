@@ -1,0 +1,10 @@
+.rotate-y-12 {
+  transform: rotateY(12deg);
+}
+
+.rotate-x-6 {
+  transform: rotateX(6deg);
+}
+.hero-btn{
+backdrop-filter: blur(10px);
+}
