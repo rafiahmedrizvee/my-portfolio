@@ -6,7 +6,7 @@ import { loadFull } from "tsparticles";
 import { Typewriter } from "react-simple-typewriter";
 
 import profile from "../assets/images/profile.png";
-import resumePDF from "../assets/images/MAZHARUL_ALAM_RAFI_Mern Stack Developer.pdf";
+import resumePDF from "../assets/images/MAZHARUL_ALAM_RAFI_AI Engineer_Resume.pdf";
 
 import {
   FaFacebookF,
