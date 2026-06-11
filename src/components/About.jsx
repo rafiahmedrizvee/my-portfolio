@@ -107,7 +107,7 @@ export default function About() {
     { title: "B.Sc. in Computer Science", institution: "Daffodil Institute of IT", year: "2025" },
     { title: "Full-Stack Web Development", institution: "Eshikhon", year: "2025" },
     { title: "Data Science & Machine Learning", institution: "Ostad", year: "2026" },
-    { title: "AI Engineering Certification", institution: "Ostad / Coursera", year: "2026" },
+    { title: "AI Engineering", institution: "Ostad / Coursera", year: "2026" },
   ];
 
   let cardIndex = 0;
