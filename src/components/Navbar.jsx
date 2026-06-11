@@ -57,7 +57,7 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 h-16 bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)] transition-colors duration-500">
         {/* Logo */}
         <span className="font-bold text-lg cursor-pointer text-[var(--text)]" onClick={() => handleClick("home")}>
-          Rafi Ahmed Rizvee<span className="text-[var(--accent)]">.</span>
+          Mazharul Alam Rafi<span className="text-[var(--accent)]">.</span>
         </span>
 
         {/* Desktop Menu */}
