@@ -81,15 +81,6 @@ Practical learning and hands-on experience in:
 - AI Model Development
 - FastAPI and AI Application Integration
 
----
-
-## 📊 GitHub Statistics
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&theme=tokyonight)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&theme=tokyonight)
-
----
 
 ## 🌐 Connect With Me
 
